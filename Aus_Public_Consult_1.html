@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A curated overview of open Australian public consultations and submission deadlines.">
+  <meta name="theme-color" content="#102a43">
+  <title>Open Public Consultations | Australia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@500;600;700&amp;family=Roboto:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #102a43;
+      --ink-soft: #52677a;
+      --navy: #0b253d;
+      --teal: #087f78;
+      --teal-dark: #07645f;
+      --mint: #dff5ef;
+      --gold: #f5b942;
+      --coral: #d55c4b;
+      --paper: #f6f8f7;
+      --white: #ffffff;
+      --line: #d9e2e8;
+      --control: #f7f9fa;
+      --filter-control: #edf1f3;
+      --table-ink: #102a43;
+      --shadow: 0 14px 40px rgba(12, 38, 61, 0.09);
+      --radius: 18px;
+    }
+
+    html[data-theme="dark"] {
+      --ink: #edf3f5;
+      --ink-soft: #aebdc8;
+      --paper: #0e171f;
+      --white: #18242e;
+      --line: #34434e;
+      --control: #202e39;
+      --filter-control: #202e39;
+      --shadow: 0 14px 40px rgba(0, 0, 0, .22);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(246, 248, 247, .94), rgba(246, 248, 247, .97)),
+        url("australian-landscape-texture.png") center / cover fixed;
+      font-family: "Roboto", "Segoe UI", Arial, sans-serif;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html[data-theme="dark"] body {
+      background:
+        linear-gradient(rgba(10, 18, 25, .92), rgba(10, 18, 25, .96)),
+        url("australian-landscape-texture.png") center / cover fixed;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+
+    .skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      color: var(--white);
+      background: var(--navy);
+      border-radius: 8px;
+      transform: translateY(-160%);
+      transition: transform .2s ease;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(100deg, rgba(8, 22, 35, .96), rgba(20, 42, 49, .90)),
+        url("australian-landscape-texture.png") center 52% / cover;
+    }
+
+    .site-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .035), transparent);
+      pointer-events: none;
+    }
+
+    .hero,
+    .content,
+    .footer-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .update-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 5px 9px;
+      color: #dcebf3;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    .header-actions {
+      position: absolute;
+      z-index: 2;
+      top: 16px;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-actions .update-pill { margin-top: 0; }
+
+    .theme-toggle {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      padding: 0;
+      place-items: center;
+      color: #f7d888;
+      background: rgba(255, 255, 255, .10);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 50%;
+      font-size: 14px;
+      line-height: 1;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .theme-toggle:hover { background: rgba(255, 255, 255, .19); transform: rotate(8deg); }
+
+    .update-pill::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      background: #63d7bf;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(99, 215, 191, .13);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 30px 0 45px;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      color: #fff;
+      font-family: "Roboto Condensed", "Roboto", sans-serif;
+      font-size: clamp(2rem, 3.8vw, 3.25rem);
+      font-weight: 600;
+      letter-spacing: -.035em;
+      line-height: 1;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin: 12px 0 0;
+      color: #cbdbe7;
+      font-size: 14px;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      padding: 0 0 46px;
+    }
+
+    .view-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(190px, 1fr));
+      gap: 5px;
+      margin: -24px 0 8px;
+      padding: 5px;
+      overflow-x: auto;
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid rgba(217, 226, 232, .9);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    html[data-theme="dark"] .view-tabs { background: rgba(24, 36, 46, .95); }
+
+    .view-tab {
+      min-height: 38px;
+      padding: 7px 16px;
+      color: var(--ink-soft);
+      background: transparent;
+      border: 0;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: color .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .view-tab:hover { color: var(--ink); background: color-mix(in srgb, var(--control) 72%, transparent); }
+    .view-tab[aria-selected="true"] { color: #fff; background: #173042; box-shadow: 0 4px 12px rgba(9, 31, 46, .16); }
+    html[data-theme="dark"] .view-tab[aria-selected="true"] { color: #132837; background: #b5c8d6; }
+    .view-tab:focus-visible { outline: 3px solid rgba(8, 127, 120, .28); outline-offset: 1px; }
+
+    .toolbar {
+      position: sticky;
+      z-index: 20;
+      top: 12px;
+      display: grid;
+      grid-template-columns: minmax(230px, 1fr) minmax(210px, .62fr) 170px auto;
+      gap: 10px;
+      margin: 0 0 16px;
+      padding: 9px;
+      background: rgba(255, 255, 255, .94);
+      border: 1px solid rgba(217, 226, 232, .9);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      font-size: 13px;
+    }
+
+    html[data-theme="dark"] .toolbar { background: rgba(24, 36, 46, .95); }
+
+    .field { position: relative; }
+
+    .field-icon {
+      position: absolute;
+      top: 50%;
+      left: 14px;
+      color: #6a7d8b;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    html[data-theme="dark"] .field-icon { color: #aebdc8; }
+
+    .control {
+      width: 100%;
+      min-height: 40px;
+      color: var(--ink);
+      background: var(--filter-control);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+
+    input.control { padding: 8px 14px 8px 42px; }
+    select.control { padding: 8px 36px 8px 13px; }
+
+    .control:hover { background: var(--white); }
+    .control:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(8, 127, 120, .12); background: var(--white); }
+
+    .toggle-button,
+    .icon-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 8px 14px;
+      color: var(--ink);
+      background: var(--filter-control);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: .2s ease;
+    }
+
+    .toggle-button:hover,
+    .icon-button:hover { color: var(--teal-dark); border-color: #92c8c2; background: #edf8f5; }
+    .toggle-button[aria-pressed="true"] { color: var(--white); border-color: var(--teal); background: var(--teal); }
+
+    .results-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 2px 10px;
+    }
+
+    .results-line p { margin: 0; color: var(--ink-soft); font-size: 13px; }
+
+    .result-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .text-button {
+      padding: 6px 2px;
+      color: var(--teal-dark);
+      background: transparent;
+      border: 0;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .agency-list { display: grid; gap: 9px; }
+
+    .agency-card {
+      --accent: var(--teal);
+      --accent-strong: var(--teal-dark);
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      box-shadow: 0 4px 14px rgba(12, 38, 61, .04);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .agency-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, white); box-shadow: 0 8px 22px rgba(12, 38, 61, .08); }
+
+    .agency-heading {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 5px 13px 5px 8px;
+      color: #173042;
+      text-align: left;
+      background: var(--accent);
+      border: 0;
+      transition: background .2s ease, color .2s ease;
+    }
+
+    .agency-heading[aria-expanded="false"] {
+      color: #173042;
+      background: var(--accent);
+    }
+
+    .agency-monogram {
+      display: grid;
+      width: 76px;
+      height: 25px;
+      place-items: center;
+      color: #173042;
+      background: rgba(255, 255, 255, .34);
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+
+    .agency-heading[aria-expanded="false"] .agency-monogram { color: #173042; background: rgba(255, 255, 255, .34); }
+
+    .agency-name { min-width: 0; }
+
+    .agency-name strong { display: block; font-family: "Roboto", sans-serif; font-size: 16px; font-weight: 500; line-height: 1.15; }
+
+    .count-badge {
+      padding: 5px 9px;
+      color: #173042;
+      background: rgba(255, 255, 255, .28);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .chevron {
+      color: #173042;
+      font-size: 20px;
+      transition: transform .2s ease;
+    }
+
+    .agency-heading[aria-expanded="false"] .chevron { transform: rotate(-90deg); }
+    .agency-heading[aria-expanded="false"] .chevron,
+    .agency-heading[aria-expanded="false"] .count-badge { color: #173042; }
+    .agency-heading[aria-expanded="false"] .count-badge { background: rgba(255, 255, 255, .28); }
+
+    .table-wrap { overflow-x: auto; border-top: 0; }
+    .agency-heading[aria-expanded="false"] + .table-wrap { display: none; }
+
+    table { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; }
+
+    th {
+      padding: 7px 14px;
+      color: #fff;
+      background: var(--accent-strong);
+      border-bottom: 1px solid var(--accent-strong);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    th:first-child, td:first-child { width: 145px; }
+    th:nth-child(2), td:nth-child(2) { width: 165px; }
+    th:last-child, td:last-child { width: 64px; text-align: center; }
+
+    td {
+      padding: 7px 14px;
+      color: var(--table-ink);
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 15%, white);
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr { cursor: pointer; background: color-mix(in srgb, var(--accent) 20%, white); transition: background .18s ease, box-shadow .18s ease; }
+    tbody tr:hover,
+    tbody tr:focus { background: color-mix(in srgb, var(--accent) 42%, white); box-shadow: inset 4px 0 0 var(--accent-strong); outline: none; }
+
+    .date-cell { white-space: nowrap; }
+    .date-cell time { display: block; font-size: 13px; font-weight: 700; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 0;
+      color: #536572;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #7f929e; }
+    .status.soon { color: #ad5b08; }
+    .status.soon::before { background: #e1841a; box-shadow: 0 0 0 3px rgba(225, 132, 26, .16); animation: status-pulse 2.2s ease-in-out infinite; }
+    .status.open { color: #336f9f; }
+    .status.open::before { background: #4d91c5; }
+    .status.closed { color: #7a8790; font-weight: 500; }
+    .status.closed::before { background: #9aa4aa; }
+
+    @keyframes status-pulse {
+      0%, 100% { opacity: .55; transform: scale(.88); }
+      50% { opacity: 1; transform: scale(1.25); }
+    }
+
+    .consultation-link {
+      color: var(--table-ink);
+      font-family: "Roboto", sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.25;
+      text-decoration: none;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .consultation-link:hover { color: var(--teal-dark); text-decoration: underline; }
+
+    .demo-label {
+      display: inline-block;
+      margin-left: 7px;
+      padding: 2px 6px;
+      color: #785b13;
+      background: #fff4cf;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      vertical-align: 2px;
+    }
+
+    .bookmark {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      color: #778a98;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .bookmark:hover { color: var(--teal); background: var(--mint); }
+    .bookmark[aria-pressed="true"] { color: #bd7a00; background: #fff4cf; }
+
+    body.modal-open { overflow: hidden; }
+
+    .shortlist-modal[hidden] { display: none; }
+
+    .shortlist-modal {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      display: grid;
+      padding: 20px;
+      place-items: center;
+      background: rgba(5, 14, 21, .72);
+      backdrop-filter: blur(5px);
+    }
+
+    .shortlist-dialog {
+      display: flex;
+      width: min(720px, 100%);
+      max-height: min(78vh, 720px);
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+      flex-direction: column;
+    }
+
+    .shortlist-header,
+    .shortlist-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+    }
+
+    .shortlist-header { border-bottom: 1px solid var(--line); }
+    .shortlist-footer { border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 12px; }
+
+    .shortlist-heading {
+      margin: 0;
+      font-family: "Roboto Condensed", "Roboto", sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+    }
+
+    .shortlist-close {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      color: var(--ink-soft);
+      background: var(--control);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .shortlist-close:hover { color: var(--ink); }
+
+    .shortlist-body {
+      display: grid;
+      gap: 8px;
+      padding: 12px;
+      overflow-y: auto;
+    }
+
+    .shortlist-entry {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 12px;
+      background: var(--control);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .shortlist-entry a {
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.3;
+      text-decoration: none;
+    }
+
+    .shortlist-entry a:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 3px; }
+
+    .shortlist-meta {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink-soft);
+      font-size: 11px;
+    }
+
+    .shortlist-remove {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      color: #bd7a00;
+      background: #fff4cf;
+      border: 0;
+      border-radius: 9px;
+      font-size: 18px;
+    }
+
+    .shortlist-empty {
+      padding: 34px 20px;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+
+    .shortlist-empty strong { display: block; margin-bottom: 5px; color: var(--ink); font-size: 16px; }
+
+    .empty-state {
+      display: none;
+      padding: 38px 24px;
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .empty-state strong { display: block; font-family: "Roboto Condensed", "Roboto", sans-serif; font-size: 24px; font-weight: 600; }
+    .empty-state p { margin: 8px 0 18px; color: var(--ink-soft); }
+
+    footer {
+      color: #c0d0dc;
+      background:
+        linear-gradient(rgba(5, 28, 45, .94), rgba(5, 28, 45, .94)),
+        url("australian-landscape-texture.png") center 74% / cover;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 72px;
+      font-size: 12px;
+    }
+
+    .footer-inner p { margin: 0; }
+    .footer-inner a { color: #fff; font-weight: 700; text-decoration: none; }
+    .footer-inner a:hover { text-decoration: underline; }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 900px) {
+      .hero { padding-block: 28px 42px; }
+      .toolbar { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .hero, .content, .footer-inner { width: min(100% - 24px, 1180px); }
+      .hero { padding-block: 24px 38px; }
+      .hero > div:not(.header-actions) { padding-top: 34px; }
+      h1 { font-size: clamp(1.95rem, 10vw, 2.7rem); }
+      .hero-copy { font-size: 13px; }
+      .view-tabs { grid-template-columns: repeat(3, minmax(180px, 1fr)); }
+      .toolbar { position: relative; top: auto; grid-template-columns: 1fr; margin-top: 0; }
+      .results-line { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .agency-heading { grid-template-columns: auto 1fr auto; padding: 5px 10px 5px 7px; }
+      .count-badge { display: none; }
+      .agency-monogram { width: 64px; height: 24px; }
+      .agency-name strong { font-size: 15px; }
+      th:first-child, td:first-child { width: 120px; }
+      th:nth-child(2), td:nth-child(2) { width: 145px; }
+      th, td { padding: 9px 10px; }
+      th:last-child, td:last-child { width: 52px; }
+      .consultation-link { font-size: 15px; }
+      .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      .status::before { animation: none !important; }
+    }
+
+    @media print {
+      .site-header { color: var(--ink); background: white; }
+      h1 { color: var(--ink); }
+      .toolbar, .text-button, .bookmark, footer { display: none !important; }
+      .hero { display: block; padding: 28px 0; }
+      .hero-copy { color: var(--ink-soft); }
+      .content { width: 100%; padding: 0; }
+      .agency-card { break-inside: avoid; box-shadow: none; }
+      .table-wrap { display: block !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#consultations">Skip to consultations</a>
+
+  <header class="site-header">
+    <div class="hero">
+      <div class="header-actions">
+        <div class="update-pill" aria-label="Data updated 24 August 2026">Updated 24 Aug 2026</div>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme" aria-pressed="false" title="Switch colour theme">💡</button>
+      </div>
+      <div>
+        <h1>Open Public Consultations</h1>
+        <p class="hero-copy">Australian and International policy, regulation and public decision-making — in one clear view.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="content" id="consultations">
+    <nav class="view-tabs" role="tablist" aria-label="Consultation coverage">
+      <button class="view-tab" id="view-national" type="button" role="tab" aria-selected="true" aria-controls="viewPanel" data-view="national">Australian National</button>
+      <button class="view-tab" id="view-subnational" type="button" role="tab" aria-selected="false" aria-controls="viewPanel" data-view="subnational" tabindex="-1">Australian Sub-National</button>
+      <button class="view-tab" id="view-international" type="button" role="tab" aria-selected="false" aria-controls="viewPanel" data-view="international" tabindex="-1">International Agencies</button>
+    </nav>
+
+    <div id="viewPanel" role="tabpanel" aria-labelledby="view-national">
+    <section class="toolbar" aria-label="Filter consultations">
+      <label class="field">
+        <span class="sr-only">Search consultations</span>
+        <span class="field-icon" aria-hidden="true">⌕</span>
+        <input class="control" id="searchInput" type="search" placeholder="Search consultations" autocomplete="off">
+      </label>
+      <label>
+        <span class="sr-only">Filter by agency</span>
+        <select class="control" id="agencyFilter">
+          <option value="all">All agencies</option>
+        </select>
+      </label>
+      <label>
+        <span class="sr-only">Sort by deadline</span>
+        <select class="control" id="sortSelect">
+          <option value="soonest">Deadline: soonest</option>
+          <option value="latest">Deadline: latest</option>
+          <option value="az">Title: A–Z</option>
+        </select>
+      </label>
+      <button class="toggle-button" id="shortlistButton" type="button" aria-haspopup="dialog" aria-controls="shortlistModal" title="Open shortlisted consultations">
+        <span aria-hidden="true">★</span> Shortlist
+      </button>
+    </section>
+
+    <div class="results-line">
+      <p id="resultSummary" aria-live="polite">Showing 22 opportunities across 11 agencies</p>
+      <div class="result-actions">
+        <button class="text-button" id="clearFilterButton" type="button" hidden>Clear Filter</button>
+        <button class="text-button" id="collapseAll" type="button">Expand all</button>
+      </div>
+    </div>
+
+    <section class="agency-list" id="agencyList" aria-label="Consultations by agency"></section>
+
+    <section class="empty-state" id="emptyState" aria-live="polite">
+      <strong>No consultations found</strong>
+      <p>Try a different keyword or clear the current filters.</p>
+      <button class="toggle-button" id="clearFilters" type="button">Clear filters</button>
+    </section>
+    </div>
+  </main>
+
+  <div class="shortlist-modal" id="shortlistModal" hidden>
+    <section class="shortlist-dialog" role="dialog" aria-modal="true" aria-labelledby="shortlistTitle">
+      <header class="shortlist-header">
+        <h2 class="shortlist-heading" id="shortlistTitle">Your shortlist</h2>
+        <button class="shortlist-close" id="shortlistClose" type="button" aria-label="Close shortlist">×</button>
+      </header>
+      <div class="shortlist-body" id="shortlistContent"></div>
+      <div class="shortlist-footer">
+        <span id="shortlistCount">0 saved consultations</span>
+        <button class="text-button" id="shortlistDone" type="button">Done</button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <p><strong>Systainix®</strong></p>
+      <p>© 2026 <a href="https://www.systainix.com.au/" target="_blank" rel="noopener noreferrer">Systainix</a>. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Increment this value with each weekly content release to reset saved entries.
+    const CURRENT_SITE_VERSION = "v2026-week-36";
+    const SAVED_ENTRIES_KEY = "saved_entries";
+    const SITE_VERSION_KEY = "site_version";
+
+    function initialiseVersionedStorage() {
+      try {
+        if (localStorage.getItem(SITE_VERSION_KEY) !== CURRENT_SITE_VERSION) {
+          localStorage.removeItem(SAVED_ENTRIES_KEY);
+          localStorage.removeItem("consultationBookmarks");
+          localStorage.setItem(SITE_VERSION_KEY, CURRENT_SITE_VERSION);
+        }
+      } catch { /* Storage may be unavailable in restrictive browsing modes. */ }
+    }
+
+    initialiseVersionedStorage();
+
+    const nationalAgencies = [
+      {
+        id: "aph", short: "APH", name: "Australian Parliament House", accent: "#9ba8d1", strong: "#46557f",
+        rows: [
+          { id: "aph-1", date: "2026-08-27", title: "Protecting Australians from Foreign Terrorist Fighters Bill 2026", url: "https://www.aph.gov.au/search/url/Inquiry/27438_33_" },
+          { id: "aph-2", date: "2026-08-28", title: "The annual report of the Department of Veterans’ Affairs 2024–25", url: "https://www.aph.gov.au/search/url/Inquiry/27408_24197_" }
+        ]
+      },
+      {
+        id: "agd", short: "AGD", name: "Attorney-General’s Department", accent: "#d1a3bc", strong: "#7a4a65",
+        rows: [
+          { id: "agd-1", date: "2026-09-07", title: "Commonwealth integrity framework review", url: "https://www.ag.gov.au/legal-system/consultations", demo: true },
+          { id: "agd-2", date: "2026-09-25", title: "Privacy law reform implementation", url: "https://www.ag.gov.au/legal-system/consultations", demo: true }
+        ]
+      },
+      {
+        id: "dcceew", short: "DCCEEW", name: "Department of Climate Change, Energy, the Environment and Water", accent: "#91c7c0", strong: "#3c756f",
+        rows: [
+          { id: "dcceew-1", date: "2026-08-24", title: "Commonwealth Western Trawl Fisheries — Agency application 2026", url: "https://consult.dcceew.gov.au/commonwealth-western-trawl-fisheries-agency-application-2026" },
+          { id: "dcceew-2", date: "2026-08-28", title: "DRIVEN Public EV Charging — Site Host Registration of Interest", url: "https://consult.dcceew.gov.au/driven-public-ev-charging-site-host-roi" }
+        ]
+      },
+      {
+        id: "daff", short: "DAFF", name: "Department of Agriculture, Fisheries and Forestry", accent: "#e8b29d", strong: "#9a5c49",
+        rows: [
+          { id: "daff-1", date: "2026-08-31", title: "Improving biosecurity management for imported new vehicles", url: "https://haveyoursay.agriculture.gov.au/imported-new-vehicle-draft-policy" },
+          { id: "daff-2", date: "2026-09-11", title: "Amending Export Control Rules 2021: Sheepmeat and Goatmeat Rules", url: "https://haveyoursay.agriculture.gov.au/sheepmeat-and-goatmeat-rules" }
+        ]
+      },
+      {
+        id: "dsir", short: "DSIR", name: "Department of Industry, Science and Resources", accent: "#9cb7cb", strong: "#4a6d86",
+        rows: [
+          { id: "dsir-1", date: "2026-09-18", title: "Horizon Europe implementation: discussion paper", url: "https://consult.industry.gov.au/horizon-europe-implementation" },
+          { id: "dsir-2", date: "2026-09-25", title: "Industry growth program evaluation", url: "https://consult.industry.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "treasury", short: "TSY", name: "The Treasury", accent: "#8fc6d9", strong: "#3d7891",
+        rows: [
+          { id: "treasury-1", date: "2026-09-15", title: "Foreign investment framework reforms — Review of ineffective conditions", url: "https://treasury.gov.au/consultation/c2026-791840" },
+          { id: "treasury-2", date: "2026-10-02", title: "Improving the efficiency of climate-related financial disclosures", url: "https://treasury.gov.au/consultation/c2026-778607" }
+        ]
+      },
+      {
+        id: "ditrdca", short: "DITRDCA", name: "Infrastructure, Transport, Regional Development, Communications and the Arts", accent: "#a2cdbb", strong: "#4f816d",
+        rows: [
+          { id: "ditrdca-1", date: "2026-10-02", title: "Aviation disability standards consultation paper", url: "https://www.infrastructure.gov.au/have-your-say/aviation-disability-standards-consultation-paper" },
+          { id: "ditrdca-2", date: "2026-10-09", title: "Regional connectivity program design", url: "https://www.infrastructure.gov.au/have-your-say", demo: true }
+        ]
+      },
+      {
+        id: "asic", short: "ASIC", name: "Australian Securities & Investments Commission", accent: "#abbcc6", strong: "#5b7280",
+        rows: [
+          { id: "asic-1", date: "2026-09-04", title: "Regulatory guidance for digital asset services", url: "https://asic.gov.au/regulatory-resources/find-a-document/consultation-papers/", demo: true },
+          { id: "asic-2", date: "2026-09-18", title: "Market integrity rules review", url: "https://asic.gov.au/regulatory-resources/find-a-document/consultation-papers/", demo: true }
+        ]
+      },
+      {
+        id: "apra", short: "APRA", name: "Australian Prudential Regulation Authority", accent: "#9cb7e3", strong: "#496da6",
+        rows: [
+          { id: "apra-1", date: "2026-09-11", title: "Proposed updates to operational risk requirements", url: "https://www.apra.gov.au/consultations", demo: true },
+          { id: "apra-2", date: "2026-09-30", title: "Capital framework settings discussion paper", url: "https://www.apra.gov.au/consultations", demo: true }
+        ]
+      },
+      {
+        id: "pc", short: "PC", name: "Productivity Commission", accent: "#adc4a5", strong: "#5f7a56",
+        rows: [
+          { id: "pc-1", date: "2026-09-14", title: "Productivity policy inquiry — interim consultation", url: "https://www.pc.gov.au/inquiries/current", demo: true },
+          { id: "pc-2", date: "2026-10-05", title: "Data and digital economy reform priorities", url: "https://www.pc.gov.au/inquiries/current", demo: true }
+        ]
+      },
+      {
+        id: "asx", short: "ASX", name: "Australian Securities Exchange", accent: "#9dbed6", strong: "#4b748e",
+        rows: [
+          { id: "asx-1", date: "2026-08-27", title: "Updated Corporate Governance Principles", url: "https://www.asx.com.au/content/dam/asx/about/media-releases/2026/21-july-media-release-asx-updated-corporate-governance-principles.pdf" },
+          { id: "asx-2", date: "2026-09-21", title: "CHESS replacement technical consultation", url: "https://www.asx.com.au/about/regulation/public-consultations", demo: true }
+        ]
+      }
+    ];
+
+    const subNationalAgencies = [
+      {
+        id: "act", short: "ACT", name: "Australian Capital Territory Government", accent: "#b9c6d8", strong: "#66788f",
+        rows: [
+          { id: "act-1", date: "2026-09-08", title: "Draft active travel network plan", url: "https://yoursayconversations.act.gov.au/", demo: true },
+          { id: "act-2", date: "2026-09-22", title: "Community facilities access review", url: "https://yoursayconversations.act.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "nsw", short: "NSW", name: "New South Wales Government", accent: "#a9c4df", strong: "#476f96",
+        rows: [
+          { id: "nsw-1", date: "2026-09-10", title: "Regional housing delivery program", url: "https://www.haveyoursay.nsw.gov.au/", demo: true },
+          { id: "nsw-2", date: "2026-09-28", title: "Draft coastal resilience guidelines", url: "https://www.haveyoursay.nsw.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "nt", short: "NT", name: "Northern Territory Government", accent: "#e6b8a1", strong: "#9c6348",
+        rows: [
+          { id: "nt-1", date: "2026-09-11", title: "Remote communities transport strategy", url: "https://haveyoursay.nt.gov.au/", demo: true },
+          { id: "nt-2", date: "2026-10-02", title: "Territory water security plan", url: "https://haveyoursay.nt.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "qld", short: "QLD", name: "Queensland Government", accent: "#d3accf", strong: "#7b4c75",
+        rows: [
+          { id: "qld-1", date: "2026-09-14", title: "Renewable energy zone community benefits", url: "https://www.getinvolved.qld.gov.au/", demo: true },
+          { id: "qld-2", date: "2026-10-06", title: "Regional health access review", url: "https://www.getinvolved.qld.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "sa", short: "SA", name: "Government of South Australia", accent: "#a2ccc5", strong: "#416f6a",
+        rows: [
+          { id: "sa-1", date: "2026-09-16", title: "Metropolitan urban greening strategy", url: "https://yoursay.sa.gov.au/", demo: true },
+          { id: "sa-2", date: "2026-10-09", title: "Freight and supply chain priorities", url: "https://yoursay.sa.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "tas", short: "TAS", name: "Tasmanian Government", accent: "#aac9b0", strong: "#4d765a",
+        rows: [
+          { id: "tas-1", date: "2026-09-18", title: "Statewide waste strategy", url: "https://www.tas.gov.au/have-your-say", demo: true },
+          { id: "tas-2", date: "2026-10-12", title: "Regional public transport review", url: "https://www.tas.gov.au/have-your-say", demo: true }
+        ]
+      },
+      {
+        id: "vic", short: "VIC", name: "Victorian Government", accent: "#aeb9dc", strong: "#4d6090",
+        rows: [
+          { id: "vic-1", date: "2026-09-21", title: "Digital inclusion action plan", url: "https://engage.vic.gov.au/", demo: true },
+          { id: "vic-2", date: "2026-10-15", title: "Planning system reform options", url: "https://engage.vic.gov.au/", demo: true }
+        ]
+      },
+      {
+        id: "wa", short: "WA", name: "Government of Western Australia", accent: "#d8c29f", strong: "#8a6b42",
+        rows: [
+          { id: "wa-1", date: "2026-09-24", title: "Biodiversity conservation priorities", url: "https://consultation.wa.gov.au/", demo: true },
+          { id: "wa-2", date: "2026-10-19", title: "Regional infrastructure pipeline", url: "https://consultation.wa.gov.au/", demo: true }
+        ]
+      }
+    ];
+
+    const internationalAgencies = [
+      {
+        id: "uncbd", short: "UNCBD", name: "United Nations Convention on Biological Diversity", accent: "#9fc6aa", strong: "#4d7758",
+        rows: [
+          { id: "uncbd-1", date: "2026-09-01", title: "Invitation for nominations to the Biosafety Clearing-House and Risk Assessment Training Workshop, 17–18 October 2026 — Yerevan, Armenia", url: "https://www.cbd.int/notifications/2026-046" },
+          { id: "uncbd-2", date: "2026-09-02", title: "Peer review of the expanded supplement to the Voluntary Guidelines for ecosystem-based approaches to climate change adaptation and disaster risk reduction", url: "https://www.cbd.int/notifications/2026-058" }
+        ]
+      },
+      {
+        id: "oecd", short: "OECD", name: "Organisation for Economic Co-operation and Development", accent: "#a7bddc", strong: "#4d6f9b",
+        rows: [
+          { id: "oecd-1", date: "2026-09-11", title: "First commenting round on a Detailed Review Paper for Error-Corrected Sequencing in regulatory testing", url: "https://www.oecd.org/en/events/public-consultations/2026/07/first-commenting-round-on-a-detailed-review-paper-to-support-the-application-of-error-corrected-sequencing-for-in-vivo-regulatory-testing-with-a-focus-on-amending-tg-488.html" },
+          { id: "oecd-2", date: "2026-09-16", title: "Children’s Health Webinar: Preparatory survey", url: "https://www.oecd.org/en/events/public-consultations/2026/07/childrens-health-webinar-preparatory-survey.html" }
+        ]
+      }
+    ];
+
+    const consultationViews = {
+      national: nationalAgencies,
+      subnational: subNationalAgencies,
+      international: internationalAgencies
+    };
+
+    let activeView = "national";
+    let activeAgencies = consultationViews[activeView];
+
+    const agencyList = document.getElementById("agencyList");
+    const searchInput = document.getElementById("searchInput");
+    const agencyFilter = document.getElementById("agencyFilter");
+    const sortSelect = document.getElementById("sortSelect");
+    const shortlistButton = document.getElementById("shortlistButton");
+    const resultSummary = document.getElementById("resultSummary");
+    const emptyState = document.getElementById("emptyState");
+    const collapseAll = document.getElementById("collapseAll");
+    const clearFilterButton = document.getElementById("clearFilterButton");
+    const themeToggle = document.getElementById("themeToggle");
+    const viewTabs = [...document.querySelectorAll(".view-tab")];
+    const viewPanel = document.getElementById("viewPanel");
+    const shortlistModal = document.getElementById("shortlistModal");
+    const shortlistContent = document.getElementById("shortlistContent");
+    const shortlistCount = document.getElementById("shortlistCount");
+    const shortlistClose = document.getElementById("shortlistClose");
+    const shortlistDone = document.getElementById("shortlistDone");
+    let shortlistReturnFocus = null;
+
+    function readTheme() {
+      try { return localStorage.getItem("consultationTheme"); }
+      catch { return null; }
+    }
+
+    function applyTheme(theme) {
+      const dark = theme === "dark";
+      document.documentElement.dataset.theme = theme;
+      themeToggle.setAttribute("aria-pressed", String(dark));
+      themeToggle.setAttribute("aria-label", `Switch to ${dark ? "light" : "dark"} theme`);
+      themeToggle.title = `Switch to ${dark ? "light" : "dark"} theme`;
+    }
+
+    const preferredTheme = readTheme() || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    applyTheme(preferredTheme);
+    function readBookmarks() {
+      try {
+        const entries = JSON.parse(localStorage.getItem(SAVED_ENTRIES_KEY) || "[]");
+        return Array.isArray(entries) ? entries : [];
+      }
+      catch { return []; }
+    }
+
+    function storeBookmarks() {
+      try {
+        localStorage.setItem(SAVED_ENTRIES_KEY, JSON.stringify([...savedIds]));
+        localStorage.setItem(SITE_VERSION_KEY, CURRENT_SITE_VERSION);
+      }
+      catch { /* Bookmarks remain available for the current session. */ }
+    }
+
+    const savedIds = new Set(readBookmarks());
+    let collapsed = true;
+
+    const formatDate = date => new Intl.DateTimeFormat("en-AU", { day: "numeric", month: "short", year: "numeric" }).format(new Date(`${date}T00:00:00`));
+
+    function daysUntil(date) {
+      const today = new Date();
+      const todayAsUtcDate = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+      const [year, month, day] = date.split("-").map(Number);
+      const deadlineAsUtcDate = Date.UTC(year, month - 1, day);
+      return Math.round((deadlineAsUtcDate - todayAsUtcDate) / 86400000);
+    }
+
+    function deadlineStatus(date) {
+      const days = daysUntil(date);
+      if (days < 0) {
+        const elapsed = Math.abs(days);
+        return { text: `${elapsed} day${elapsed === 1 ? "" : "s"} ago`, className: "closed" };
+      }
+      if (days === 0) return { text: "0 days remaining", className: "soon" };
+      if (days <= 7) return { text: `${days} day${days === 1 ? "" : "s"} remaining`, className: "soon" };
+      return { text: `${days} days remaining`, className: "open" };
+    }
+
+    function populateAgencyFilter() {
+      agencyFilter.innerHTML = '<option value="all">All agencies</option>';
+      activeAgencies.forEach(agency => {
+        const option = document.createElement("option");
+        option.value = agency.id;
+        option.textContent = agency.short === "TSY" ? "Treasury" : agency.short;
+        agencyFilter.append(option);
+      });
+    }
+
+    function render() {
+      const query = searchInput.value.trim().toLocaleLowerCase();
+      const agencyValue = agencyFilter.value;
+      clearFilterButton.hidden = !query && agencyValue === "all" && sortSelect.value === "soonest";
+      let shownRows = 0;
+      let shownAgencies = 0;
+
+      agencyList.innerHTML = "";
+
+      activeAgencies.forEach(agency => {
+        if (agencyValue !== "all" && agency.id !== agencyValue) return;
+
+        const rows = agency.rows.filter(row => {
+          const haystack = `${agency.name} ${agency.short} ${row.title}`.toLocaleLowerCase();
+          return !query || haystack.includes(query);
+        }).sort((a, b) => {
+          if (sortSelect.value === "latest") return b.date.localeCompare(a.date);
+          if (sortSelect.value === "az") return a.title.localeCompare(b.title);
+          return a.date.localeCompare(b.date);
+        });
+
+        if (!rows.length) return;
+        shownRows += rows.length;
+        shownAgencies += 1;
+
+        const card = document.createElement("article");
+        card.className = "agency-card";
+        card.style.setProperty("--accent", agency.accent);
+        card.style.setProperty("--accent-strong", agency.strong);
+
+        const rowMarkup = rows.map(row => {
+          const status = deadlineStatus(row.date);
+          const saved = savedIds.has(row.id);
+          return `
+            <tr data-url="${row.url}" role="link" tabindex="0" aria-label="Open ${row.title} in a new tab">
+              <td class="date-cell">
+                <time datetime="${row.date}">${formatDate(row.date)}</time>
+              </td>
+              <td class="status-cell"><span class="status ${status.className}">${status.text}</span></td>
+              <td>
+                <a class="consultation-link" href="${row.url}" target="_blank" rel="noopener noreferrer">${row.title}</a>
+                ${row.demo ? '<span class="demo-label" title="Illustrative entry added for this design preview">Demo</span>' : ""}
+              </td>
+              <td>
+                <button class="bookmark" type="button" data-bookmark="${row.id}" aria-label="${saved ? "Remove from" : "Add to"} shortlist: ${row.title}" aria-pressed="${saved}" title="${saved ? "Remove from shortlist" : "Add to shortlist"}">${saved ? "★" : "☆"}</button>
+              </td>
+            </tr>`;
+        }).join("");
+
+        card.innerHTML = `
+          <button class="agency-heading" type="button" aria-expanded="${!collapsed}" aria-controls="panel-${agency.id}">
+            <span class="agency-monogram" aria-hidden="true">${agency.short}</span>
+            <span class="agency-name"><strong>${agency.name}</strong></span>
+            <span class="count-badge">${rows.length} ${rows.length === 1 ? "item" : "items"}</span>
+            <span class="chevron" aria-hidden="true">&#8964;</span>
+          </button>
+          <div class="table-wrap" id="panel-${agency.id}">
+            <table>
+              <caption class="sr-only">Open consultations from ${agency.name}</caption>
+              <thead><tr><th scope="col">Closes</th><th scope="col">Status</th><th scope="col">Consultation</th><th scope="col"><span class="sr-only">Shortlist</span></th></tr></thead>
+              <tbody>${rowMarkup}</tbody>
+            </table>
+          </div>`;
+
+        agencyList.append(card);
+      });
+
+      emptyState.style.display = shownRows ? "none" : "block";
+      resultSummary.textContent = `Showing ${shownRows} ${shownRows === 1 ? "opportunity" : "opportunities"} across ${shownAgencies} ${shownAgencies === 1 ? "agency" : "agencies"}`;
+    }
+
+    const viewLabels = {
+      national: "Australian National",
+      subnational: "Australian Sub-National",
+      international: "International"
+    };
+
+    function getShortlistedEntries() {
+      return Object.entries(consultationViews).flatMap(([view, agencies]) =>
+        agencies.flatMap(agency => agency.rows.map(row => ({ view, agency, row })))
+      ).filter(item => savedIds.has(item.row.id))
+        .sort((a, b) => a.row.date.localeCompare(b.row.date));
+    }
+
+    function renderShortlist() {
+      const entries = getShortlistedEntries();
+      shortlistCount.textContent = `${entries.length} saved ${entries.length === 1 ? "consultation" : "consultations"}`;
+
+      if (!entries.length) {
+        shortlistContent.innerHTML = '<div class="shortlist-empty"><strong>No saved consultations yet</strong>Select a star beside any consultation to add it here.</div>';
+        return;
+      }
+
+      shortlistContent.innerHTML = entries.map(({ view, agency, row }) => `
+        <article class="shortlist-entry">
+          <div>
+            <a href="${row.url}" target="_blank" rel="noopener noreferrer">${row.title}</a>
+            <span class="shortlist-meta">${viewLabels[view]} · ${agency.short} · Closes ${formatDate(row.date)}</span>
+          </div>
+          <button class="shortlist-remove" type="button" data-shortlist-remove="${row.id}" aria-label="Remove from shortlist: ${row.title}" title="Remove from shortlist">★</button>
+        </article>`).join("");
+    }
+
+    function openShortlist() {
+      shortlistReturnFocus = document.activeElement;
+      renderShortlist();
+      shortlistModal.hidden = false;
+      document.body.classList.add("modal-open");
+      requestAnimationFrame(() => shortlistClose.focus());
+    }
+
+    function closeShortlist() {
+      shortlistModal.hidden = true;
+      document.body.classList.remove("modal-open");
+      if (shortlistReturnFocus) shortlistReturnFocus.focus();
+    }
+
+    agencyList.addEventListener("click", event => {
+      const heading = event.target.closest(".agency-heading");
+      if (heading) {
+        const open = heading.getAttribute("aria-expanded") === "true";
+        heading.setAttribute("aria-expanded", String(!open));
+        return;
+      }
+
+      const button = event.target.closest("[data-bookmark]");
+      if (button) {
+        const id = button.dataset.bookmark;
+        savedIds.has(id) ? savedIds.delete(id) : savedIds.add(id);
+        storeBookmarks();
+        render();
+        return;
+      }
+
+      const row = event.target.closest("tbody tr[data-url]");
+      if (row && !event.target.closest("a")) {
+        const opened = window.open(row.dataset.url, "_blank", "noopener,noreferrer");
+        if (opened) opened.opener = null;
+      }
+    });
+
+    agencyList.addEventListener("keydown", event => {
+      const row = event.target.closest("tbody tr[data-url]");
+      if (!row || event.target.closest("button, a") || !["Enter", " "].includes(event.key)) return;
+      event.preventDefault();
+      const opened = window.open(row.dataset.url, "_blank", "noopener,noreferrer");
+      if (opened) opened.opener = null;
+    });
+
+    function switchView(view, selectedTab) {
+      if (!consultationViews[view]) return;
+      activeView = view;
+      activeAgencies = consultationViews[activeView];
+      viewTabs.forEach(tab => {
+        const selected = tab === selectedTab;
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+      });
+      viewPanel.setAttribute("aria-labelledby", selectedTab.id);
+      searchInput.value = "";
+      collapsed = true;
+      collapseAll.textContent = "Expand all";
+      populateAgencyFilter();
+      render();
+    }
+
+    viewTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => switchView(tab.dataset.view, tab));
+      tab.addEventListener("keydown", event => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = index;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % viewTabs.length;
+        if (event.key === "ArrowLeft") nextIndex = (index - 1 + viewTabs.length) % viewTabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = viewTabs.length - 1;
+        viewTabs[nextIndex].focus();
+        viewTabs[nextIndex].click();
+      });
+    });
+
+    searchInput.addEventListener("input", render);
+    agencyFilter.addEventListener("change", render);
+    sortSelect.addEventListener("change", render);
+
+    shortlistButton.addEventListener("click", openShortlist);
+    shortlistClose.addEventListener("click", closeShortlist);
+    shortlistDone.addEventListener("click", closeShortlist);
+
+    shortlistModal.addEventListener("click", event => {
+      if (event.target === shortlistModal) closeShortlist();
+    });
+
+    shortlistContent.addEventListener("click", event => {
+      const removeButton = event.target.closest("[data-shortlist-remove]");
+      if (!removeButton) return;
+      savedIds.delete(removeButton.dataset.shortlistRemove);
+      storeBookmarks();
+      render();
+      renderShortlist();
+    });
+
+    shortlistModal.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeShortlist();
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const focusable = [...shortlistModal.querySelectorAll('a[href], button:not([disabled])')];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+      applyTheme(nextTheme);
+      try { localStorage.setItem("consultationTheme", nextTheme); }
+      catch { /* The selected theme remains active for the current session. */ }
+    });
+
+    collapseAll.addEventListener("click", () => {
+      collapsed = !collapsed;
+      document.querySelectorAll(".agency-heading").forEach(button => button.setAttribute("aria-expanded", String(!collapsed)));
+      collapseAll.textContent = collapsed ? "Expand all" : "Collapse all";
+    });
+
+    function clearActiveFilters(focusSearch = false) {
+      searchInput.value = "";
+      agencyFilter.value = "all";
+      sortSelect.value = "soonest";
+      render();
+      if (focusSearch) searchInput.focus();
+    }
+
+    clearFilterButton.addEventListener("click", () => clearActiveFilters());
+    document.getElementById("clearFilters").addEventListener("click", () => clearActiveFilters(true));
+
+    function refreshRelativeDates() {
+      render();
+      if (!shortlistModal.hidden) renderShortlist();
+    }
+
+    function scheduleMidnightRefresh() {
+      const now = new Date();
+      const nextMidnight = new Date(now);
+      nextMidnight.setHours(24, 0, 1, 0);
+      setTimeout(() => {
+        refreshRelativeDates();
+        scheduleMidnightRefresh();
+      }, nextMidnight - now);
+    }
+
+    window.addEventListener("focus", refreshRelativeDates);
+
+    populateAgencyFilter();
+    render();
+    scheduleMidnightRefresh();
+  </script>
+</body>
+</html>
