@@ -330,6 +330,9 @@
 
     .agency-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, white); box-shadow: 0 8px 22px rgba(12, 38, 61, .08); }
 
+    .agency-card.is-empty { box-shadow: 0 3px 10px rgba(39, 51, 59, .035); }
+    .agency-card.is-empty:hover { border-color: #aeb8be; box-shadow: 0 5px 14px rgba(39, 51, 59, .06); }
+
     .agency-heading {
       display: grid;
       grid-template-columns: auto 1fr auto auto;
@@ -420,6 +423,10 @@
     tbody tr { cursor: pointer; background: color-mix(in srgb, var(--accent) 20%, white); transition: background .18s ease, box-shadow .18s ease; }
     tbody tr:hover,
     tbody tr:focus { background: color-mix(in srgb, var(--accent) 42%, white); box-shadow: inset 4px 0 0 var(--accent-strong); outline: none; }
+
+    tbody tr.no-consultations-row { cursor: default; }
+    tbody tr.no-consultations-row:hover { background: color-mix(in srgb, var(--accent) 20%, white); box-shadow: none; }
+    .no-consultations-cell { color: #65727a; font-size: 13px; font-weight: 500; text-align: left !important; }
 
     .date-cell { white-space: nowrap; }
     .date-cell time { display: block; font-size: 13px; font-weight: 700; }
@@ -800,77 +807,77 @@
 
     const nationalAgencies = [
       {
-        id: "aph", short: "APH", name: "Australian Parliament House", accent: "#9ba8d1", strong: "#46557f",
+        id: "aph", short: "APH", name: "Australian Parliament House", accent: "#5196D7", strong: "#1D5C9A",
         rows: [
           { id: "aph-1", date: "2026-08-27", title: "Protecting Australians from Foreign Terrorist Fighters Bill 2026", url: "https://www.aph.gov.au/search/url/Inquiry/27438_33_" },
           { id: "aph-2", date: "2026-08-28", title: "The annual report of the Department of Veterans’ Affairs 2024–25", url: "https://www.aph.gov.au/search/url/Inquiry/27408_24197_" }
         ]
       },
       {
-        id: "agd", short: "AGD", name: "Attorney-General’s Department", accent: "#d1a3bc", strong: "#7a4a65",
+        id: "agd", short: "AGD", name: "Attorney-General’s Department", accent: "#7786D5", strong: "#2F3EA2",
         rows: [
           { id: "agd-1", date: "2026-09-07", title: "Commonwealth integrity framework review", url: "https://www.ag.gov.au/legal-system/consultations", demo: true },
           { id: "agd-2", date: "2026-09-25", title: "Privacy law reform implementation", url: "https://www.ag.gov.au/legal-system/consultations", demo: true }
         ]
       },
       {
-        id: "dcceew", short: "DCCEEW", name: "Department of Climate Change, Energy, the Environment and Water", accent: "#91c7c0", strong: "#3c756f",
+        id: "dcceew", short: "DCCEEW", name: "Department of Climate Change, Energy, the Environment and Water", accent: "#9D78CE", strong: "#5E3894",
         rows: [
           { id: "dcceew-1", date: "2026-08-24", title: "Commonwealth Western Trawl Fisheries — Agency application 2026", url: "https://consult.dcceew.gov.au/commonwealth-western-trawl-fisheries-agency-application-2026" },
           { id: "dcceew-2", date: "2026-08-28", title: "DRIVEN Public EV Charging — Site Host Registration of Interest", url: "https://consult.dcceew.gov.au/driven-public-ev-charging-site-host-roi" }
         ]
       },
       {
-        id: "daff", short: "DAFF", name: "Department of Agriculture, Fisheries and Forestry", accent: "#e8b29d", strong: "#9a5c49",
+        id: "daff", short: "DAFF", name: "Department of Agriculture, Fisheries and Forestry", accent: "#BC7CB5", strong: "#82407C",
         rows: [
           { id: "daff-1", date: "2026-08-31", title: "Improving biosecurity management for imported new vehicles", url: "https://haveyoursay.agriculture.gov.au/imported-new-vehicle-draft-policy" },
           { id: "daff-2", date: "2026-09-11", title: "Amending Export Control Rules 2021: Sheepmeat and Goatmeat Rules", url: "https://haveyoursay.agriculture.gov.au/sheepmeat-and-goatmeat-rules" }
         ]
       },
       {
-        id: "dsir", short: "DSIR", name: "Department of Industry, Science and Resources", accent: "#9cb7cb", strong: "#4a6d86",
+        id: "dsir", short: "DSIR", name: "Department of Industry, Science and Resources", accent: "#CA7285", strong: "#90374A",
         rows: [
           { id: "dsir-1", date: "2026-09-18", title: "Horizon Europe implementation: discussion paper", url: "https://consult.industry.gov.au/horizon-europe-implementation" },
           { id: "dsir-2", date: "2026-09-25", title: "Industry growth program evaluation", url: "https://consult.industry.gov.au/", demo: true }
         ]
       },
       {
-        id: "treasury", short: "TSY", name: "The Treasury", accent: "#8fc6d9", strong: "#3d7891",
+        id: "treasury", short: "TSY", name: "The Treasury", accent: "#D19A5C", strong: "#92622A",
         rows: [
           { id: "treasury-1", date: "2026-09-15", title: "Foreign investment framework reforms — Review of ineffective conditions", url: "https://treasury.gov.au/consultation/c2026-791840" },
           { id: "treasury-2", date: "2026-10-02", title: "Improving the efficiency of climate-related financial disclosures", url: "https://treasury.gov.au/consultation/c2026-778607" }
         ]
       },
       {
-        id: "ditrdca", short: "DITRDCA", name: "Infrastructure, Transport, Regional Development, Communications and the Arts", accent: "#a2cdbb", strong: "#4f816d",
+        id: "ditrdca", short: "DITRDCA", name: "Infrastructure, Transport, Regional Development, Communications and the Arts", accent: "#B9AC60", strong: "#766E37",
         rows: [
           { id: "ditrdca-1", date: "2026-10-02", title: "Aviation disability standards consultation paper", url: "https://www.infrastructure.gov.au/have-your-say/aviation-disability-standards-consultation-paper" },
           { id: "ditrdca-2", date: "2026-10-09", title: "Regional connectivity program design", url: "https://www.infrastructure.gov.au/have-your-say", demo: true }
         ]
       },
       {
-        id: "asic", short: "ASIC", name: "Australian Securities & Investments Commission", accent: "#abbcc6", strong: "#5b7280",
+        id: "asic", short: "ASIC", name: "Australian Securities & Investments Commission", accent: "#70A987", strong: "#3D7152",
         rows: [
           { id: "asic-1", date: "2026-09-04", title: "Regulatory guidance for digital asset services", url: "https://asic.gov.au/regulatory-resources/find-a-document/consultation-papers/", demo: true },
           { id: "asic-2", date: "2026-09-18", title: "Market integrity rules review", url: "https://asic.gov.au/regulatory-resources/find-a-document/consultation-papers/", demo: true }
         ]
       },
       {
-        id: "apra", short: "APRA", name: "Australian Prudential Regulation Authority", accent: "#9cb7e3", strong: "#496da6",
+        id: "apra", short: "APRA", name: "Australian Prudential Regulation Authority", accent: "#4DB5AA", strong: "#32716B",
         rows: [
           { id: "apra-1", date: "2026-09-11", title: "Proposed updates to operational risk requirements", url: "https://www.apra.gov.au/consultations", demo: true },
           { id: "apra-2", date: "2026-09-30", title: "Capital framework settings discussion paper", url: "https://www.apra.gov.au/consultations", demo: true }
         ]
       },
       {
-        id: "pc", short: "PC", name: "Productivity Commission", accent: "#adc4a5", strong: "#5f7a56",
+        id: "pc", short: "PC", name: "Productivity Commission", accent: "#57ABC2", strong: "#2D6E80",
         rows: [
           { id: "pc-1", date: "2026-09-14", title: "Productivity policy inquiry — interim consultation", url: "https://www.pc.gov.au/inquiries/current", demo: true },
           { id: "pc-2", date: "2026-10-05", title: "Data and digital economy reform priorities", url: "https://www.pc.gov.au/inquiries/current", demo: true }
         ]
       },
       {
-        id: "asx", short: "ASX", name: "Australian Securities Exchange", accent: "#9dbed6", strong: "#4b748e",
+        id: "asx", short: "ASX", name: "Australian Securities Exchange", accent: "#55B591", strong: "#346F5B",
         rows: [
           { id: "asx-1", date: "2026-08-27", title: "Updated Corporate Governance Principles", url: "https://www.asx.com.au/content/dam/asx/about/media-releases/2026/21-july-media-release-asx-updated-corporate-governance-principles.pdf" },
           { id: "asx-2", date: "2026-09-21", title: "CHESS replacement technical consultation", url: "https://www.asx.com.au/about/regulation/public-consultations", demo: true }
@@ -880,56 +887,56 @@
 
     const subNationalAgencies = [
       {
-        id: "act", short: "ACT", name: "Australian Capital Territory Government", accent: "#b9c6d8", strong: "#66788f",
+        id: "act", short: "ACT", name: "Australian Capital Territory Government", accent: "#5196D7", strong: "#1D5C9A",
         rows: [
           { id: "act-1", date: "2026-09-08", title: "Draft active travel network plan", url: "https://yoursayconversations.act.gov.au/", demo: true },
           { id: "act-2", date: "2026-09-22", title: "Community facilities access review", url: "https://yoursayconversations.act.gov.au/", demo: true }
         ]
       },
       {
-        id: "nsw", short: "NSW", name: "New South Wales Government", accent: "#a9c4df", strong: "#476f96",
+        id: "nsw", short: "NSW", name: "New South Wales Government", accent: "#7786D5", strong: "#2F3EA2",
         rows: [
           { id: "nsw-1", date: "2026-09-10", title: "Regional housing delivery program", url: "https://www.haveyoursay.nsw.gov.au/", demo: true },
           { id: "nsw-2", date: "2026-09-28", title: "Draft coastal resilience guidelines", url: "https://www.haveyoursay.nsw.gov.au/", demo: true }
         ]
       },
       {
-        id: "nt", short: "NT", name: "Northern Territory Government", accent: "#e6b8a1", strong: "#9c6348",
+        id: "nt", short: "NT", name: "Northern Territory Government", accent: "#9D78CE", strong: "#5E3894",
         rows: [
           { id: "nt-1", date: "2026-09-11", title: "Remote communities transport strategy", url: "https://haveyoursay.nt.gov.au/", demo: true },
           { id: "nt-2", date: "2026-10-02", title: "Territory water security plan", url: "https://haveyoursay.nt.gov.au/", demo: true }
         ]
       },
       {
-        id: "qld", short: "QLD", name: "Queensland Government", accent: "#d3accf", strong: "#7b4c75",
+        id: "qld", short: "QLD", name: "Queensland Government", accent: "#BC7CB5", strong: "#82407C",
         rows: [
           { id: "qld-1", date: "2026-09-14", title: "Renewable energy zone community benefits", url: "https://www.getinvolved.qld.gov.au/", demo: true },
           { id: "qld-2", date: "2026-10-06", title: "Regional health access review", url: "https://www.getinvolved.qld.gov.au/", demo: true }
         ]
       },
       {
-        id: "sa", short: "SA", name: "Government of South Australia", accent: "#a2ccc5", strong: "#416f6a",
+        id: "sa", short: "SA", name: "Government of South Australia", accent: "#CA7285", strong: "#90374A",
         rows: [
           { id: "sa-1", date: "2026-09-16", title: "Metropolitan urban greening strategy", url: "https://yoursay.sa.gov.au/", demo: true },
           { id: "sa-2", date: "2026-10-09", title: "Freight and supply chain priorities", url: "https://yoursay.sa.gov.au/", demo: true }
         ]
       },
       {
-        id: "tas", short: "TAS", name: "Tasmanian Government", accent: "#aac9b0", strong: "#4d765a",
+        id: "tas", short: "TAS", name: "Tasmanian Government", accent: "#D19A5C", strong: "#92622A",
         rows: [
           { id: "tas-1", date: "2026-09-18", title: "Statewide waste strategy", url: "https://www.tas.gov.au/have-your-say", demo: true },
           { id: "tas-2", date: "2026-10-12", title: "Regional public transport review", url: "https://www.tas.gov.au/have-your-say", demo: true }
         ]
       },
       {
-        id: "vic", short: "VIC", name: "Victorian Government", accent: "#aeb9dc", strong: "#4d6090",
+        id: "vic", short: "VIC", name: "Victorian Government", accent: "#B9AC60", strong: "#766E37",
         rows: [
           { id: "vic-1", date: "2026-09-21", title: "Digital inclusion action plan", url: "https://engage.vic.gov.au/", demo: true },
           { id: "vic-2", date: "2026-10-15", title: "Planning system reform options", url: "https://engage.vic.gov.au/", demo: true }
         ]
       },
       {
-        id: "wa", short: "WA", name: "Government of Western Australia", accent: "#d8c29f", strong: "#8a6b42",
+        id: "wa", short: "WA", name: "Government of Western Australia", accent: "#70A987", strong: "#3D7152",
         rows: [
           { id: "wa-1", date: "2026-09-24", title: "Biodiversity conservation priorities", url: "https://consultation.wa.gov.au/", demo: true },
           { id: "wa-2", date: "2026-10-19", title: "Regional infrastructure pipeline", url: "https://consultation.wa.gov.au/", demo: true }
@@ -939,14 +946,14 @@
 
     const internationalAgencies = [
       {
-        id: "uncbd", short: "UNCBD", name: "United Nations Convention on Biological Diversity", accent: "#9fc6aa", strong: "#4d7758",
+        id: "uncbd", short: "UNCBD", name: "United Nations Convention on Biological Diversity", accent: "#5196D7", strong: "#1D5C9A",
         rows: [
           { id: "uncbd-1", date: "2026-09-01", title: "Invitation for nominations to the Biosafety Clearing-House and Risk Assessment Training Workshop, 17–18 October 2026 — Yerevan, Armenia", url: "https://www.cbd.int/notifications/2026-046" },
           { id: "uncbd-2", date: "2026-09-02", title: "Peer review of the expanded supplement to the Voluntary Guidelines for ecosystem-based approaches to climate change adaptation and disaster risk reduction", url: "https://www.cbd.int/notifications/2026-058" }
         ]
       },
       {
-        id: "oecd", short: "OECD", name: "Organisation for Economic Co-operation and Development", accent: "#a7bddc", strong: "#4d6f9b",
+        id: "oecd", short: "OECD", name: "Organisation for Economic Co-operation and Development", accent: "#7786D5", strong: "#2F3EA2",
         rows: [
           { id: "oecd-1", date: "2026-09-11", title: "First commenting round on a Detailed Review Paper for Error-Corrected Sequencing in regulatory testing", url: "https://www.oecd.org/en/events/public-consultations/2026/07/first-commenting-round-on-a-detailed-review-paper-to-support-the-application-of-error-corrected-sequencing-for-in-vivo-regulatory-testing-with-a-focus-on-amending-tg-488.html" },
           { id: "oecd-2", date: "2026-09-16", title: "Children’s Health Webinar: Preparatory survey", url: "https://www.oecd.org/en/events/public-consultations/2026/07/childrens-health-webinar-preparatory-survey.html" }
@@ -1059,6 +1066,9 @@
       activeAgencies.forEach(agency => {
         if (agencyValue !== "all" && agency.id !== agencyValue) return;
 
+        const hasOpenConsultations = agency.rows.length > 0;
+        const agencyMatchesQuery = `${agency.name} ${agency.short}`.toLocaleLowerCase().includes(query);
+
         const rows = agency.rows.filter(row => {
           const haystack = `${agency.name} ${agency.short} ${row.title}`.toLocaleLowerCase();
           return !query || haystack.includes(query);
@@ -1068,16 +1078,17 @@
           return a.date.localeCompare(b.date);
         });
 
-        if (!rows.length) return;
+        if (hasOpenConsultations && !rows.length) return;
+        if (!hasOpenConsultations && query && !agencyMatchesQuery) return;
         shownRows += rows.length;
         shownAgencies += 1;
 
         const card = document.createElement("article");
-        card.className = "agency-card";
-        card.style.setProperty("--accent", agency.accent);
-        card.style.setProperty("--accent-strong", agency.strong);
+        card.className = `agency-card${hasOpenConsultations ? "" : " is-empty"}`;
+        card.style.setProperty("--accent", hasOpenConsultations ? agency.accent : "#c4ccd1");
+        card.style.setProperty("--accent-strong", hasOpenConsultations ? agency.strong : "#727e86");
 
-        const rowMarkup = rows.map(row => {
+        const rowMarkup = hasOpenConsultations ? rows.map(row => {
           const status = deadlineStatus(row.date);
           const saved = savedIds.has(row.id);
           return `
@@ -1094,13 +1105,16 @@
                 <button class="bookmark" type="button" data-bookmark="${row.id}" aria-label="${saved ? "Remove from" : "Add to"} shortlist: ${row.title}" aria-pressed="${saved}" title="${saved ? "Remove from shortlist" : "Add to shortlist"}">${saved ? "★" : "☆"}</button>
               </td>
             </tr>`;
-        }).join("");
+        }).join("") : `
+            <tr class="no-consultations-row">
+              <td class="no-consultations-cell" colspan="4">No open consultations</td>
+            </tr>`;
 
         card.innerHTML = `
           <button class="agency-heading" type="button" aria-expanded="${!collapsed}" aria-controls="panel-${agency.id}">
             <span class="agency-monogram" aria-hidden="true">${agency.short}</span>
             <span class="agency-name"><strong>${agency.name}</strong></span>
-            <span class="count-badge">${rows.length} ${rows.length === 1 ? "item" : "items"}</span>
+            <span class="count-badge">${hasOpenConsultations ? `${rows.length} ${rows.length === 1 ? "item" : "items"}` : "0 items"}</span>
             <span class="chevron" aria-hidden="true">&#8964;</span>
           </button>
           <div class="table-wrap" id="panel-${agency.id}">
@@ -1114,7 +1128,7 @@
         agencyList.append(card);
       });
 
-      emptyState.style.display = shownRows ? "none" : "block";
+      emptyState.style.display = shownAgencies ? "none" : "block";
       resultSummary.textContent = `Showing ${shownRows} ${shownRows === 1 ? "opportunity" : "opportunities"} across ${shownAgencies} ${shownAgencies === 1 ? "agency" : "agencies"}`;
     }
 

@@ -406,6 +406,15 @@
       box-shadow: 0 8px 22px rgba(12, 38, 61, .08);
     }
 
+    .agency-card.is-empty {
+      box-shadow: 0 3px 10px rgba(39, 51, 59, .035);
+    }
+
+    .agency-card.is-empty:hover {
+      border-color: #aeb8be;
+      box-shadow: 0 5px 14px rgba(39, 51, 59, .06);
+    }
+
     .agency-heading {
       display: grid;
       grid-template-columns: auto 1fr auto auto;
@@ -549,6 +558,22 @@
       background: color-mix(in srgb, var(--accent) 42%, white);
       box-shadow: inset 4px 0 0 var(--accent-strong);
       outline: none;
+    }
+
+    tbody tr.no-consultations-row {
+      cursor: default;
+    }
+
+    tbody tr.no-consultations-row:hover {
+      background: color-mix(in srgb, var(--accent) 20%, white);
+      box-shadow: none;
+    }
+
+    .no-consultations-cell {
+      color: #65727a;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left !important;
     }
 
     .date-cell {
@@ -1148,8 +1173,8 @@
         "id": "aph",
         "short": "APH",
         "name": "Australian Parliament House",
-        "accent": "#9ba8d1",
-        "strong": "#46557f",
+        "accent": "#5196D7",
+        "strong": "#1D5C9A",
         "rows": [{
             "id": "aph-b533115d26",
             "date": "2026-09-01",
@@ -1318,16 +1343,40 @@
         "id": "agd",
         "short": "AGD",
         "name": "Attorney-General’s Department",
-        "accent": "#d1a3bc",
-        "strong": "#7a4a65",
-        "rows": []
+        "accent": "#7786D5",
+        "strong": "#2F3EA2",
+        "rows": [{
+            "id": "agd-662ec41875",
+            "date": "2026-09-10",
+            "title": "Statutory Review of the Crimes Legislation Amendment (Combatting Foreign Bribery) Act 2024",
+            "url": "https://consultations.ag.gov.au/crime/combatting_foreign_bribery/"
+          },
+          {
+            "id": "agd-fbedb22d90",
+            "date": "2026-09-18",
+            "title": "Australia’s draft seventh periodic report under the Convention against Torture and other Cruel, Inhuman or Degrading Treatment or Punishment",
+            "url": "https://consultations.ag.gov.au/rights-and-protections/cat/"
+          },
+          {
+            "id": "agd-d8e01de438",
+            "date": "2026-09-18",
+            "title": "Privacy Reform – Consultation on Exposure Draft legislation",
+            "url": "https://consultations.ag.gov.au/rights-and-protections/privacy-reform/"
+          },
+          {
+            "id": "agd-43ea021a44",
+            "date": "2026-09-25",
+            "title": "Strengthening Australia’s response to modern slavery in supply chains",
+            "url": "https://consultations.ag.gov.au/crime/modern-slavery/"
+          }
+        ]
       },
       {
         "id": "dcceew",
         "short": "DCCEEW",
         "name": "Department of Climate Change, Energy, the Environment and Water",
-        "accent": "#91c7c0",
-        "strong": "#3c756f",
+        "accent": "#9D78CE",
+        "strong": "#5E3894",
         "rows": [{
             "id": "dcceew-37f3f84316",
             "date": "2026-08-31",
@@ -1472,8 +1521,8 @@
         "id": "daff",
         "short": "DAFF",
         "name": "Department of Agriculture, Fisheries and Forestry",
-        "accent": "#e8b29d",
-        "strong": "#9a5c49",
+        "accent": "#BC7CB5",
+        "strong": "#82407C",
         "rows": [{
             "id": "daff-d401573e1d",
             "date": "2026-09-01",
@@ -1516,8 +1565,8 @@
         "id": "dsir",
         "short": "DSIR",
         "name": "Department of Industry, Science and Resources",
-        "accent": "#9cb7cb",
-        "strong": "#4a6d86",
+        "accent": "#CA7285",
+        "strong": "#90374A",
         "rows": [{
           "id": "dsir-b818de3164",
           "date": "2026-09-18",
@@ -1529,8 +1578,8 @@
         "id": "treasury",
         "short": "TSY",
         "name": "The Treasury",
-        "accent": "#8fc6d9",
-        "strong": "#3d7891",
+        "accent": "#D19A5C",
+        "strong": "#92622A",
         "rows": [{
             "id": "treasury-9f9cbc6dab",
             "date": "2026-06-26",
@@ -1597,8 +1646,8 @@
         "id": "ditrdca",
         "short": "DITRDCA",
         "name": "Infrastructure, Transport, Regional Development, Communications and the Arts",
-        "accent": "#a2cdbb",
-        "strong": "#4f816d",
+        "accent": "#B9AC60",
+        "strong": "#766E37",
         "rows": [{
           "id": "ditrdca-57baa534af",
           "date": "2026-10-02",
@@ -1610,32 +1659,44 @@
         "id": "asic",
         "short": "ASIC",
         "name": "Australian Securities & Investments Commission",
-        "accent": "#abbcc6",
-        "strong": "#5b7280",
+        "accent": "#70A987",
+        "strong": "#3D7152",
         "rows": []
       },
       {
         "id": "apra",
         "short": "APRA",
         "name": "Australian Prudential Regulation Authority",
-        "accent": "#9cb7e3",
-        "strong": "#496da6",
+        "accent": "#4DB5AA",
+        "strong": "#32716B",
         "rows": []
       },
       {
         "id": "pc",
         "short": "PC",
         "name": "Productivity Commission",
-        "accent": "#adc4a5",
-        "strong": "#5f7a56",
-        "rows": []
+        "accent": "#57ABC2",
+        "strong": "#2D6E80",
+        "rows": [{
+            "id": "pc-d982ea476a",
+            "date": "2026-09-30",
+            "title": "GST distribution reforms",
+            "url": "https://www.pc.gov.au/inquiries-and-research/gst-reforms"
+          },
+          {
+            "id": "pc-b496d8e765",
+            "date": "2026-09-30",
+            "title": "Housing supply regulation",
+            "url": "https://www.pc.gov.au/inquiries-and-research/housing-supply"
+          }
+        ]
       },
       {
         "id": "asx",
         "short": "ASX",
         "name": "Australian Securities Exchange",
-        "accent": "#9dbed6",
-        "strong": "#4b748e",
+        "accent": "#55B591",
+        "strong": "#346F5B",
         "rows": []
       }
     ];
@@ -1644,8 +1705,8 @@
         "id": "act",
         "short": "ACT",
         "name": "Australian Capital Territory Government",
-        "accent": "#b9c6d8",
-        "strong": "#66788f",
+        "accent": "#5196D7",
+        "strong": "#1D5C9A",
         "rows": [{
             "id": "act-1",
             "date": "2026-09-08",
@@ -1666,8 +1727,8 @@
         "id": "nsw",
         "short": "NSW",
         "name": "New South Wales Government",
-        "accent": "#a9c4df",
-        "strong": "#476f96",
+        "accent": "#7786D5",
+        "strong": "#2F3EA2",
         "rows": [{
             "id": "nsw-1",
             "date": "2026-09-10",
@@ -1688,8 +1749,8 @@
         "id": "nt",
         "short": "NT",
         "name": "Northern Territory Government",
-        "accent": "#e6b8a1",
-        "strong": "#9c6348",
+        "accent": "#9D78CE",
+        "strong": "#5E3894",
         "rows": [{
             "id": "nt-1",
             "date": "2026-09-11",
@@ -1710,8 +1771,8 @@
         "id": "qld",
         "short": "QLD",
         "name": "Queensland Government",
-        "accent": "#d3accf",
-        "strong": "#7b4c75",
+        "accent": "#BC7CB5",
+        "strong": "#82407C",
         "rows": [{
             "id": "qld-1",
             "date": "2026-09-14",
@@ -1732,8 +1793,8 @@
         "id": "sa",
         "short": "SA",
         "name": "Government of South Australia",
-        "accent": "#a2ccc5",
-        "strong": "#416f6a",
+        "accent": "#CA7285",
+        "strong": "#90374A",
         "rows": [{
             "id": "sa-1",
             "date": "2026-09-16",
@@ -1754,8 +1815,8 @@
         "id": "tas",
         "short": "TAS",
         "name": "Tasmanian Government",
-        "accent": "#aac9b0",
-        "strong": "#4d765a",
+        "accent": "#D19A5C",
+        "strong": "#92622A",
         "rows": [{
             "id": "tas-1",
             "date": "2026-09-18",
@@ -1776,8 +1837,8 @@
         "id": "vic",
         "short": "VIC",
         "name": "Victorian Government",
-        "accent": "#aeb9dc",
-        "strong": "#4d6090",
+        "accent": "#B9AC60",
+        "strong": "#766E37",
         "rows": [{
             "id": "vic-1",
             "date": "2026-09-21",
@@ -1798,8 +1859,8 @@
         "id": "wa",
         "short": "WA",
         "name": "Government of Western Australia",
-        "accent": "#d8c29f",
-        "strong": "#8a6b42",
+        "accent": "#70A987",
+        "strong": "#3D7152",
         "rows": [{
             "id": "wa-1",
             "date": "2026-09-24",
@@ -1822,8 +1883,8 @@
         "id": "uncbd",
         "short": "UNCBD",
         "name": "United Nations Convention on Biological Diversity",
-        "accent": "#9fc6aa",
-        "strong": "#4d7758",
+        "accent": "#5196D7",
+        "strong": "#1D5C9A",
         "rows": [{
             "id": "uncbd-51807cedfb",
             "date": "2026-09-01",
@@ -1860,8 +1921,8 @@
         "id": "oecd",
         "short": "OECD",
         "name": "Organisation for Economic Co-operation and Development",
-        "accent": "#a7bddc",
-        "strong": "#4d6f9b",
+        "accent": "#7786D5",
+        "strong": "#2F3EA2",
         "rows": [{
             "id": "oecd-665280a39e",
             "date": "2026-09-11",
@@ -2009,6 +2070,9 @@
       activeAgencies.forEach(agency => {
         if (agencyValue !== "all" && agency.id !== agencyValue) return;
 
+        const hasOpenConsultations = agency.rows.length > 0;
+        const agencyMatchesQuery = `${agency.name} ${agency.short}`.toLocaleLowerCase().includes(query);
+
         const rows = agency.rows.filter(row => {
           const haystack = `${agency.name} ${agency.short} ${row.title}`.toLocaleLowerCase();
           return !query || haystack.includes(query);
@@ -2018,16 +2082,17 @@
           return a.date.localeCompare(b.date);
         });
 
-        if (!rows.length) return;
+        if (hasOpenConsultations && !rows.length) return;
+        if (!hasOpenConsultations && query && !agencyMatchesQuery) return;
         shownRows += rows.length;
         shownAgencies += 1;
 
         const card = document.createElement("article");
-        card.className = "agency-card";
-        card.style.setProperty("--accent", agency.accent);
-        card.style.setProperty("--accent-strong", agency.strong);
+        card.className = `agency-card${hasOpenConsultations ? "" : " is-empty"}`;
+        card.style.setProperty("--accent", hasOpenConsultations ? agency.accent : "#c4ccd1");
+        card.style.setProperty("--accent-strong", hasOpenConsultations ? agency.strong : "#727e86");
 
-        const rowMarkup = rows.map(row => {
+        const rowMarkup = hasOpenConsultations ? rows.map(row => {
           const status = deadlineStatus(row.date);
           const saved = savedIds.has(row.id);
           return `
@@ -2044,13 +2109,16 @@
                 <button class="bookmark" type="button" data-bookmark="${row.id}" aria-label="${saved ? "Remove from" : "Add to"} shortlist: ${row.title}" aria-pressed="${saved}" title="${saved ? "Remove from shortlist" : "Add to shortlist"}">${saved ? "★" : "☆"}</button>
               </td>
             </tr>`;
-        }).join("");
+        }).join("") : `
+            <tr class="no-consultations-row">
+              <td class="no-consultations-cell" colspan="4">No open consultations</td>
+            </tr>`;
 
         card.innerHTML = `
           <button class="agency-heading" type="button" aria-expanded="${!collapsed}" aria-controls="panel-${agency.id}">
             <span class="agency-monogram" aria-hidden="true">${agency.short}</span>
             <span class="agency-name"><strong>${agency.name}</strong></span>
-            <span class="count-badge">${rows.length} ${rows.length === 1 ? "item" : "items"}</span>
+            <span class="count-badge">${hasOpenConsultations ? `${rows.length} ${rows.length === 1 ? "item" : "items"}` : "0 items"}</span>
             <span class="chevron" aria-hidden="true">&#8964;</span>
           </button>
           <div class="table-wrap" id="panel-${agency.id}">
@@ -2064,7 +2132,7 @@
         agencyList.append(card);
       });
 
-      emptyState.style.display = shownRows ? "none" : "block";
+      emptyState.style.display = shownAgencies ? "none" : "block";
       resultSummary.textContent =
         `Showing ${shownRows} ${shownRows === 1 ? "opportunity" : "opportunities"} across ${shownAgencies} ${shownAgencies === 1 ? "agency" : "agencies"}`;
     }
