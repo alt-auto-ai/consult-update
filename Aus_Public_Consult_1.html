@@ -152,6 +152,7 @@
       background: #63d7bf;
       border-radius: 50%;
       box-shadow: 0 0 0 4px rgba(99, 215, 191, .13);
+      animation: status-pulse 2.2s ease-in-out infinite;
     }
 
     .hero {
@@ -537,6 +538,9 @@
     .shortlist-header { border-bottom: 1px solid var(--line); }
     .shortlist-footer { border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 12px; }
 
+    .shortlist-footer-actions { display: flex; align-items: center; gap: 22px; }
+    .shortlist-copy:disabled { cursor: not-allowed; opacity: .45; text-decoration: none; }
+
     .shortlist-heading {
       margin: 0;
       font-family: "Roboto Condensed", "Roboto", sans-serif;
@@ -592,6 +596,20 @@
       color: var(--ink-soft);
       font-size: 11px;
     }
+
+    .shortlist-entry-actions { display: flex; align-items: center; gap: 8px; }
+
+    .shortlist-copy-one {
+      padding: 6px 9px;
+      color: var(--teal-dark);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .shortlist-copy-one:hover { border-color: #92c8c2; background: var(--mint); }
 
     .shortlist-remove {
       width: 32px;
@@ -684,7 +702,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
-      .status::before { animation: none !important; }
+      .status::before, .update-pill::before { animation: none !important; }
     }
 
     @media print {
@@ -775,7 +793,10 @@
       <div class="shortlist-body" id="shortlistContent"></div>
       <div class="shortlist-footer">
         <span id="shortlistCount">0 saved consultations</span>
-        <button class="text-button" id="shortlistDone" type="button">Done</button>
+        <div class="shortlist-footer-actions">
+          <button class="text-button shortlist-copy" id="shortlistCopy" type="button" aria-live="polite">Copy All</button>
+          <button class="text-button" id="shortlistDone" type="button">Done</button>
+        </div>
       </div>
     </section>
   </div>
@@ -986,6 +1007,7 @@
     const shortlistContent = document.getElementById("shortlistContent");
     const shortlistCount = document.getElementById("shortlistCount");
     const shortlistClose = document.getElementById("shortlistClose");
+    const shortlistCopy = document.getElementById("shortlistCopy");
     const shortlistDone = document.getElementById("shortlistDone");
     let shortlistReturnFocus = null;
 
@@ -1148,6 +1170,7 @@
     function renderShortlist() {
       const entries = getShortlistedEntries();
       shortlistCount.textContent = `${entries.length} saved ${entries.length === 1 ? "consultation" : "consultations"}`;
+      shortlistCopy.disabled = !entries.length;
 
       if (!entries.length) {
         shortlistContent.innerHTML = '<div class="shortlist-empty"><strong>No saved consultations yet</strong>Select a star beside any consultation to add it here.</div>';
@@ -1160,8 +1183,52 @@
             <a href="${row.url}" target="_blank" rel="noopener noreferrer">${row.title}</a>
             <span class="shortlist-meta">${viewLabels[view]} · ${agency.short} · Closes ${formatDate(row.date)}</span>
           </div>
-          <button class="shortlist-remove" type="button" data-shortlist-remove="${row.id}" aria-label="Remove from shortlist: ${row.title}" title="Remove from shortlist">★</button>
+          <div class="shortlist-entry-actions">
+            <button class="shortlist-copy-one" type="button" data-shortlist-copy="${row.id}" aria-label="Copy shortlist details: ${row.title}">Copy</button>
+            <button class="shortlist-remove" type="button" data-shortlist-remove="${row.id}" aria-label="Remove from shortlist: ${row.title}" title="Remove from shortlist">★</button>
+          </div>
         </article>`).join("");
+    }
+
+    async function writeClipboard(text) {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.append(textarea);
+      textarea.select();
+      const copied = document.execCommand("copy");
+      textarea.remove();
+      if (!copied) throw new Error("Clipboard copy was not available.");
+    }
+
+    function formatShortlistEntry({ view, agency, row }) {
+      return `${row.title}\n${viewLabels[view]} · ${agency.short} · Closes ${formatDate(row.date)}\n${row.url}`;
+    }
+
+    async function copyWithFeedback(button, text, defaultLabel) {
+      try {
+        await writeClipboard(text);
+        button.textContent = "Copied";
+      } catch {
+        button.textContent = "Copy failed";
+      }
+
+      setTimeout(() => {
+        if (button.isConnected) button.textContent = defaultLabel;
+      }, 1600);
+    }
+
+    async function copyShortlist() {
+      const entries = getShortlistedEntries();
+      if (!entries.length) return;
+      await copyWithFeedback(shortlistCopy, entries.map(formatShortlistEntry).join("\n\n"), "Copy All");
     }
 
     function openShortlist() {
@@ -1191,7 +1258,12 @@
         const id = button.dataset.bookmark;
         savedIds.has(id) ? savedIds.delete(id) : savedIds.add(id);
         storeBookmarks();
-        render();
+        const saved = savedIds.has(id);
+        const title = button.getAttribute("aria-label").replace(/^(?:Add to|Remove from) shortlist:\s*/, "");
+        button.setAttribute("aria-pressed", String(saved));
+        button.setAttribute("aria-label", `${saved ? "Remove from" : "Add to"} shortlist: ${title}`);
+        button.title = saved ? "Remove from shortlist" : "Add to shortlist";
+        button.textContent = saved ? "★" : "☆";
         return;
       }
 
@@ -1248,13 +1320,21 @@
 
     shortlistButton.addEventListener("click", openShortlist);
     shortlistClose.addEventListener("click", closeShortlist);
+    shortlistCopy.addEventListener("click", copyShortlist);
     shortlistDone.addEventListener("click", closeShortlist);
 
     shortlistModal.addEventListener("click", event => {
       if (event.target === shortlistModal) closeShortlist();
     });
 
-    shortlistContent.addEventListener("click", event => {
+    shortlistContent.addEventListener("click", async event => {
+      const copyButton = event.target.closest("[data-shortlist-copy]");
+      if (copyButton) {
+        const entry = getShortlistedEntries().find(({ row }) => row.id === copyButton.dataset.shortlistCopy);
+        if (entry) await copyWithFeedback(copyButton, formatShortlistEntry(entry), "Copy");
+        return;
+      }
+
       const removeButton = event.target.closest("[data-shortlist-remove]");
       if (!removeButton) return;
       savedIds.delete(removeButton.dataset.shortlistRemove);
@@ -1307,7 +1387,14 @@
     document.getElementById("clearFilters").addEventListener("click", () => clearActiveFilters(true));
 
     function refreshRelativeDates() {
+      const expandedPanels = new Set(
+        [...agencyList.querySelectorAll('.agency-heading[aria-expanded="true"]')]
+          .map(button => button.getAttribute("aria-controls"))
+      );
       render();
+      agencyList.querySelectorAll(".agency-heading").forEach(button => {
+        if (expandedPanels.has(button.getAttribute("aria-controls"))) button.setAttribute("aria-expanded", "true");
+      });
       if (!shortlistModal.hidden) renderShortlist();
     }
 
